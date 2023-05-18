@@ -53,7 +53,9 @@ and started docker as described below in Prerequisites.
 Many users of HPC systems are also Python programmers. Python is a great programming language for prototyping data analyses and simulations, but things become more challenging when trying to leverage cross-node and within-node parallelism. In this tutorial, we present the general-purpose Chapel programming language for productive, parallel programming. Participants can experiment with Chapel code examples from applications such as k-mer counting, solving a diffusion PDE, sorting, and image processing. For hands-on activities, we provide a container for quick setup and instructions on how to use Chapel on the UArizona HPC systems. Active learning exercises such as online multiple choice about converting common Python patterns into Chapel code enable participants to check what they have learned. Throughout the tutorial, existing large applications written in Chapel are highlighted with quotes from their developers and example code snippets showing Chapel usage in production.  We also give a brief introduction to Chapel’s newfound support for GPU programming. Come join us for a fun couple of hours exploring how to write parallel programs in a productive and performant way!
 
 ## Prerequisites
+```
 NOTE: unfortunately, podman was not working as expected for this tutorial
+```
 
 Please install podman (https://podman.io/) on your laptop beforehand or bring
 along a friend who has it installed on their laptop and is willing to share.
@@ -86,7 +88,7 @@ On your laptop, you need to use docker for the container that emulates
 multinode executions. 
 The current docker container doesn't work with podman just yet.  Here are the instructions:
 
-    docker pull docker.io/chapel/chapel-gasnet     # takes about 3 minutes
+    docker pull docker.io/chapel/chapel-gasnet     # takes about 5 minutes
     echo 'writeln("Hello, world!");' > hello.chpl
     docker run --rm -v "$PWD":/myapp -w /myapp chapel/chapel-gasnet chpl hello.chpl
     docker run --rm -v "$PWD":/myapp -w /myapp chapel/chapel-gasnet ./hello -nl 2
