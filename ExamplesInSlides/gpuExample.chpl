@@ -1,8 +1,8 @@
 // Example that will run on a GPU or CPU.
 // See https://chapel-lang.org/docs/technotes/gpu.html for more information.
 
-use GPUDiagnostics;
-startGPUDiagnostics();
+use GpuDiagnostics;
+startGpuDiagnostics();
 
 var operateOn = if here.gpus.size > 0 then here.gpus else [here,];
 
@@ -13,6 +13,6 @@ coforall loc in operateOn do on loc {
   writeln(A);
 }
 
-stopGPUDiagnostics();
-writeln(getGPUDiagnostics());
+stopGpuDiagnostics();
+writeln(getGpuDiagnostics());
 

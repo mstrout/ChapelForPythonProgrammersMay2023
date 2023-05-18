@@ -23,14 +23,14 @@ config const dir = "DataDir";   // subdirectory for all data
 
 // find all the files in the given subdirectory and put them in a distributed array
 var fList = findFiles(dir);
-var filenames = newBlockArr(0..#fList.size,string);
+var filenames = Block.createArray(0..#fList.size,string);
 filenames = fList;
 
 // per file kmer count
 forall f in filenames {
   // read in the input sequence from the file infile and strip out newlines
   var sequence, line : string;
-  var infile = open(f, iomode.r).reader();
+  var infile = open(f, ioMode.r).reader();
   while infile.readLine(line) {
     sequence += line.strip();
   }
