@@ -1,19 +1,14 @@
 // stringExamples.chpl
 
 /*
-   usage on puma/ocelote:
+   usage:
      chpl stringExamples.chpl
      ./stringExamples
 
-   usage on laptop with podman (or docker):
-     podman pull docker.io/chapel/chapel     // only have to do this once, but it takes a few minutes
-
-     podman run --rm -v "$PWD":/myapp -w /myapp chapel/chapel chpl stringExamples.chpl
-     podman run --rm -v "$PWD":/myapp -w /myapp chapel/chapel ./stringExamples
-
    For docker usage, see https://chapel-lang.org/install-docker.html
 
-   See more about strings at https://chapel-lang.org/docs/language/spec/strings.html
+   See more about strings at 
+   https://chapel-lang.org/docs/language/spec/strings.html
 */
 
 /*
