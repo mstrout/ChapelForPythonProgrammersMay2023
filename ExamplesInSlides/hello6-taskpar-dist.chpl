@@ -1,24 +1,9 @@
 // Distributed memory task parallel hello world
 
+//  See https://chapel-lang.org/docs/examples/index.html for more hello 
+//  world variants.
+
 /*
-   usage on puma/ocelote:
-     chpl hello6-taskpar-dist.chpl
-     ./hello6-taskpar-dist -nl 2
-
-     # something else to try
-     ./hello6-taskpar-dist -nl 4 --tasksPerLocale=3
-
-   usage on laptop with docker:
-     docker pull docker.io/chapel/chapel-gasnet // only do this once, but it takes a few minutes
-
-     docker run --rm -v "$PWD":/myapp -w /myapp chapel/chapel-gasnet chpl hello6-taskpar-dist.chpl
-     docker run --rm -v "$PWD":/myapp -w /myapp chapel/chapel-gasnet ./hello6-taskpar-dist -nl 4
-
-     # something else to try
-     docker run --rm -v "$PWD":/myapp -w /myapp chapel/chapel-gasnet ./hello6-taskpar-dist -nl 4 --tasksPerLocale=3
-
-   See https://chapel-lang.org/docs/examples/index.html for more hello world variants.
-
    1/25/23, downloaded from 
    https://github.com/chapel-lang/chapel/blob/main/test/release/examples/hello6-taskpar-dist.chpl
 */

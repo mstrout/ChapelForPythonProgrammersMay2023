@@ -1,26 +1,15 @@
 // diffusion.chpl
 
 /*
-   This heat diffusion example (solves a partial differential equation PDE) is setup to take
-   advantage of multithreading, but not multiple nodes.  It can be run on multiple nodes by
-   setting the number of locales/nodes to something greater than 1 (-nl 4), however, all the
-   data will be on the zeroth locale and therefore the overhead of accessing nonlocal data may
+   This heat diffusion example (solves a partial differential equation PDE) 
+   is setup to take advantage of multithreading, but not multiple nodes.  
+   It can be run on multiple nodes by setting the number of locales/nodes 
+   to something greater than 1 (-nl 4), however, all the data will be on 
+   the zeroth locale and therefore the overhead of accessing nonlocal data may
    mean distributed parallelism isn't worth it.
 
-   usage on puma/ocelote:
      chpl diffusion.chpl
      ./diffusion -nl 1
-
-   usage on laptop with docker:
-     docker pull docker.io/chapel/chapel-gasnet // only have to do this once, but it takes a few minutes
-
-     docker run --rm -v "$PWD":/myapp -w /myapp chapel/chapel-gasnet chpl diffusion.chpl
-     docker run --rm -v "$PWD":/myapp -w /myapp chapel/chapel-gasnet ./diffusion -nl 1
-
-     // something else to try
-     // FIXME: need a space of reasonable configurations from Jeremiah, also read blog post to see
-     // if some are already discussed in there
-     docker run --rm -v "$PWD":/myapp -w /myapp chapel/chapel-gasnet ./hello6-taskpar-dist -nl 4 --tasksPerLocale=3
 
   Slightly modified from PR 19, hpc-chapel-blog/content/posts/bns2/code/nsStep7.chpl
 */

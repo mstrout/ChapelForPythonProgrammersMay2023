@@ -1,15 +1,11 @@
 // parfilekmer.chpl
 /*
-   usage on puma/ocelote:
+   usage:
      chpl parfilekmer.chpl
      ./parfilekmer -nl 2
 
-   usage on laptop with podman (or docker):
-     docker run --rm -v "$PWD":/myapp -w /myapp chapel/chapel-gasnet chpl parfilekmer.chpl
-     docker run --rm -v "$PWD":/myapp -w /myapp chapel/chapel-gasnet ./parfilekmer
-
-     # can change the infilename on command line because it is a configuration const
-     podman run --rm -v "$PWD":/myapp -w /myapp chapel/chapel ./kmer --infilename="kmer.chpl"
+   # can change the infilename on command line as  it is a configuration const
+     ./kmer --infilename="kmer.chpl"
 
    kmer_large_input.txt is from
    https://www.ncbi.nlm.nih.gov/nuccore/NC_001422.1?report=fasta

@@ -1,17 +1,10 @@
 // kmer.chpl
 /*
-   usage on puma/ocelote:
+   usage:
      chpl kmer.chpl
      ./kmer
 
-   usage on laptop with podman (or docker):
-     podman run --rm -v "$PWD":/myapp -w /myapp chapel/chapel chpl kmer.chpl
-     podman run --rm -v "$PWD":/myapp -w /myapp chapel/chapel ./kmer
-
-     # can change the infilename on command line because it is a configuration const
-     podman run --rm -v "$PWD":/myapp -w /myapp chapel/chapel ./kmer --infilename="kmer.chpl"
-
-   For docker usage, see https://chapel-lang.org/install-docker.html
+  For docker usage, see https://chapel-lang.org/install-docker.html
 
    Original version of kmer counting algorithm provided by
    Aryamaan Jain (github strikeraryu) on Chapel Discourse April 7, 2021.

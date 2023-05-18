@@ -1,15 +1,9 @@
 // writelnExamples.chpl
 
 /*
-   usage on puma/ocelote:
+   usage:
      chpl writelnExamples.chpl
      ./writelnExamples
-
-   usage on laptop with podman (or docker):
-     podman pull docker.io/chapel/chapel     // only have to do this once, but it takes a few minutes
-
-     podman run --rm -v "$PWD":/myapp -w /myapp chapel/chapel chpl writelnExamples.chpl
-     podman run --rm -v "$PWD":/myapp -w /myapp chapel/chapel ./writelnExamples
 
    For docker usage, see https://chapel-lang.org/install-docker.html
 
@@ -17,12 +11,14 @@
 */
 
 /*
-   One fantastic capability of Chapel is that the compiler generates a default `writeThis` method
-   for all datatypes, those provided by the language and those that are user-defined.
-   This makes debugging by printing out values of those types much easier.
+   One fantastic capability of Chapel is that the compiler generates a 
+   default `writeThis` method for all datatypes, those provided by the 
+   language and those that are user-defined.  This makes debugging by 
+   printing out values of those types much easier.
 
-   In this example program, we see how `writeln` uses the default, compiler-generated
-   `writeThis` method without us having to explicitly call it.
+   In this example program, we see how `writeln` uses the default, 
+   compiler-generated `writeThis` method without us having to explicitly 
+   call it.
 */
 
 writeln();
