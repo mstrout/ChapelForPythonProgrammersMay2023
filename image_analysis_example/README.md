@@ -19,11 +19,13 @@ To run, do
 ```
   ./main -nl 4 --inname=Roatan_benthic_r3_gray.png --outname=out.png --radius=100
 ```
+Leave off the `-nl 4` if you are only running on one locale.
 
-The input file is a grayscale .png, but the intensity values actually represent different 
-habitat types numbered from 0 to 6.  So the grayscale values are all from 0 to 6, where the 
-full range is from 0 (black) to 255 (white).  So it all looks black
+The input file is a grayscale .png, but the intensity values actually 
+represent different habitat types numbered from 0 to 6.  So the grayscale 
+values are all from 0 to 6, where the full range is from 0 (black) to 255 
+(white).  So it all looks black
 
-The output file uses a "jet" colormap defined in png.chpl, which I scale based on the maximum 
-value in the output array.
+The output file uses a "jet" colormap defined in png.chpl, which I scale 
+based on the maximum value in the output array.
 
