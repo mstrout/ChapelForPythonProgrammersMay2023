@@ -1,27 +1,26 @@
-
-use IO;
+use IO, IO.FormattedIO;
 import Subprocess.spawn;
 
 proc readEcgData(path: string): [] int throws {
-    var r = openreader(path),
-        lines = r.readAll(bytes),
-        arr : [{0..<lines.count(b"\n")}] int;
-
-    for (line, idx) in zip(lines.split(b"\n", ignoreEmpty=true), 0..) {
-        arr[idx] = line.partition(b" ")[2] : int;
+  iter getSamples(fr) {
+    var a, b: int;
+    while fr.readf("%i %i\n", a, b) {
+      yield b;
     }
-
-    return arr;
+  }
+  const samples = getSamples(openReader(path));
+  return samples;
 }
 
 proc plotDwtData(signal, coefficients, n: int) throws {
-    writeArray(openwriter("results/signal.txt"), signal);
-    writeArray(openwriter("results/coeffs.txt"), coefficients);
+  openWriter("results/signal.txt").write(signal);
+  openWriter("results/coeffs.txt").write(coefficients);
 
+  try {
     spawn(["python3", "plot.py", n:string]);
+  } catch e {
+    writeln("Failed to run plotting script: ", e.message());
+  }
+  writeln("Generated `results/ecg_dwt.png`");
 }
 
-proc writeArray(writer, x) throws {
-    for val in x do writer.write(val, " ");
-    writer.writeln();
-}

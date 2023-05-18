@@ -1,6 +1,8 @@
 use ecgIO;
+import Math.log2;
 
 config const nLevels = 3;
+config param plotResults = false;
 
 proc main() {
     // read sample data
@@ -12,21 +14,22 @@ proc main() {
     const ecg_dwt = haarWavelet1D(ecgSamples[0..<lenP2], nLevels);
 
     // generate a plot of the signal and DWT
-    plotDwtData(ecgSamples[0..<lenP2], ecg_dwt, nLevels);
+    if plotResults then plotDwtData(ecgSamples[0..<lenP2], ecg_dwt, nLevels);
 }
 
-
 // compute an n-level wavelet transform of 'x'
-proc haarWavelet1D(x, n) {
-    assert(2**log2(x.size) == x.size, "array size must be a power of 2");
+proc haarWavelet1D(x: [?d] ?t, n: int) : [d] t
+    where d.rank == 1 && isNumericType(t)
+{
+    assert(2**log2(d.size) == d.size, "array size must be a power of 2");
 
-    var output : [x.domain] int;
-    hwRec(x, output, x.size, x.size / 2**n);
+    var output : [d] t;
+    hwRec(x, output, d.size, d.size / 2**n);
     return output;
 }
 
 // recursive helper for 'haarWavelet1D'
-proc hwRec(signal, output, fmax, fstop) {
+proc hwRec(const signal, ref output, fmax: int, fstop: int) {
     if fmax == fstop {
         // store the final layer of high-pass coefficients
         output[{0..<fmax}] = signal;
@@ -42,22 +45,23 @@ proc hwRec(signal, output, fmax, fstop) {
 }
 
 // haar 2-element high-pass filter
-proc haarHP(x) {
-    var y : [x.domain] int = x;
-    forall i in x.domain#(x.domain.size-1) do y[i] -= x[i+1];
+proc haarHP(x: [?d] ?t): [d] t {
+    var y : [d] t = x;
+    forall i in d#d.size-1 do y[i] -= x[i+1];
     return y;
 }
 
 // haar 2-element low-pass filter
-proc haarLP(x) {
-    var y : [x.domain] int = x;
-    forall i in x.domain#(x.domain.size-1) do y[i] += x[i+1];
+proc haarLP(x: [?d] ?t): [d] t {
+    var y : [d] t = x;
+    forall i in d#d.size-1 do y[i] += x[i+1];
     return y;
 }
 
 // down-sample by a factor of 2
-proc downSample2(x) {
-    var y : [{x.domain.first..(x.domain.last/2)}] int;
-    y = x[x.domain by 2];
+proc downSample2(x: [?d] ?t) {
+    var y : [{d.first..(d.last/2)}] t;
+    y = x[d by 2];
     return y;
 }
+
