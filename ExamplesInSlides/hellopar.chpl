@@ -19,7 +19,7 @@
 config const tasksPerLocale = 1;
 
 // Creates a task per locale
-coforall loc in Locales on loc {
+coforall loc in Locales do on loc {
   coforall tid in 0..#tasksPerLocale {
 
     writeln("Hello world! (from task ", tid, " of ", tasksPerLocale,
